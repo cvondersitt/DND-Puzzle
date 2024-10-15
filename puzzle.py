@@ -1,7 +1,20 @@
 from graphics import *
+import sys
+import os
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 900, 900
 win = GraphWin("Puzzle", WINDOW_WIDTH, WINDOW_HEIGHT)
+
+
+
+def resource_path(relative_path):
+    """ Get the absolute path to the resource, works for PyInstaller bundles. """
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+# Example usage in your script:
+
 
 def buttons():
     abj = Rectangle(Point(0, 600), Point(300, 900))  # points are ordered ll, ur
@@ -49,15 +62,15 @@ def inside(point, rectangle):
 
 def sigils():
     """ Adds sigils to board"""
-    abj = Image(Point(150, 750), 'sigils/abj.png')
-    conj = Image(Point(450, 750), 'sigils/conj.png')
-    div = Image(Point(750, 750), 'sigils/div.png')
-    enc = Image(Point(150, 450), 'sigils/enc.png')
-    evo = Image(Point(450, 450), 'sigils/evo.png')
-    hae = Image(Point(750, 450), 'sigils/hae.png')
-    ill = Image(Point(150, 150), 'sigils/ill.png')
-    necro = Image(Point(450, 150), 'sigils/necro.png')
-    tra = Image(Point(750, 150), 'sigils/tra.png')
+    abj = Image(Point(150, 750), resource_path('sigils/abj.png'))
+    conj = Image(Point(450, 750), resource_path('sigils/conj.png'))
+    div = Image(Point(750, 750), resource_path('sigils/div.png'))
+    enc = Image(Point(150, 450), resource_path('sigils/enc.png'))
+    evo = Image(Point(450, 450), resource_path('sigils/evo.png'))
+    hae = Image(Point(750, 450), resource_path('sigils/hae.png'))
+    ill = Image(Point(150, 150), resource_path('sigils/ill.png'))
+    necro = Image(Point(450, 150), resource_path('sigils/necro.png'))
+    tra = Image(Point(750, 150), resource_path('sigils/tra.png'))
 
     abj.draw(win)
     conj.draw(win)
